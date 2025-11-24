@@ -75,7 +75,7 @@ footer{
     height: 260px;
     padding: 60px;
     padding-top: 30px;
-    translate: 0 -5px;
+    /* translate: 0 -5px; */
 
     /* position: sticky; */
     /* z-index: 10; */
@@ -253,5 +253,18 @@ h3{
 
 
 
+.button {
+    /* background-color: var(--green); */
+    border: 2px solid var(--beige);
+    color: var(--red);
 
+    font-size: 20px;
+    border-radius: 30px;
+    padding: 3px;
+    width: 150px;
+    text-align: center;
+
+    transition-property: background-color color;
+	transition-duration: 0.2s;
+}
 
