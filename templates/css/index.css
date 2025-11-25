@@ -268,3 +268,54 @@ h3{
 	transition-duration: 0.2s;
 }
 
+
+
+
+.button2 {
+    /* background-color: var(--green); */
+    border: 2px solid var(--red);
+    color: var(--red);
+
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    text-align: center;
+
+    transition-property: background-color color;
+	transition-duration: 0.2s;
+}
+
+.button3 {
+    background-color: var(--red);
+    /* border: 2px solid var(--red); */
+    color: var(--beige);
+
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    text-align: center;
+
+    transition-property: background-color color;
+	transition-duration: 0.2s;
+}
+
+
+.color_button {
+    /* background-color: var(--red); */
+    border: 2px solid var(--red);
+    border-radius: 50px;
+    margin: 2px;
+
+    width: 30px;
+    height: 30px;
+
+
+    transition-property: background-color color;
+	transition-duration: 0.2s;
+}
