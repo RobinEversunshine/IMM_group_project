@@ -50,7 +50,10 @@ body{
     
 }
 
-
+section{
+    line-height: 0;
+    /* outline: black solid 1px; */
+}
 
 
 header{
@@ -264,7 +267,7 @@ h3{
 
 
 .best_button {
-    background-color: var(--green);
+    /* background-color: transparent; */
     border: 2px solid var(--beige);
     color: var(--beige);
 
