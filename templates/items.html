@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 
 <body>
     <header>
         <div>
-            <a class="red" href="index.html" style="
+            <a class="red" href="/" style="
                     text-align: center;
                 ">
                 <p style="
@@ -26,30 +26,30 @@
                 height: 50px;
             ">
                 <a href="">
-                    <img src="../images/Group 46.png" alt="" class="header_image">
+                    <img src="../static/images/Group 46.png" alt="" class="header_image">
                 </a>
                 <a href="">
-                    <img src="../images/Group 47.png" alt="" class="header_image">
+                    <img src="../static/images/Group 47.png" alt="" class="header_image">
                 </a>
                 <a href="">
-                    <img src="../images/Group 45.png" alt="" class="header_image">
+                    <img src="../static/images/Group 45.png" alt="" class="header_image">
                 </a>
             </div>
         </div>
         <div class="header_red">
-            <a href="">
+            <a href="/">
                 <p>Home</p>
             </a>
-            <a href="">
+            <a href="/items">
                 <p>Gift</p>
             </a>
-            <a href="">
+            <a href="/items">
                 <p>Wearable</p>
             </a>
-            <a href="">
+            <a href="/items">
                 <p>Scripts</p>
             </a>
-            <a href="">
+            <a href="/items">
                 <p>Sale</p>
             </a>
         </div>
@@ -134,13 +134,15 @@
         margin-top: 50px;
     ">
         <div style="
-        margin-top: 30px;
+            margin-top: 30px;
+            margin-bottom: 300px;
             display: flex;
             flex-wrap: wrap;
             
             gap: 20px; 
             width: 940px;
         ">
+            {% for item in items %}
             <div class="red">
                 <div class="item_box" style="
                     background-color: rgb(214, 214, 214);
@@ -148,56 +150,41 @@
                     justify-content: center;
                     overflow: hidden;
                 ">
-                    <img src="../images/导航页.png" alt="item image">
+                    <!-- <img src="../static/item_images/UP25AS00A.webp" alt="item image"> -->
+                    <a style="
+                        display: flex;
+                        justify-content: center;
+                    " href="/item/{{item.sku}}">
+                        <img src="/static/item_images/{{item.image}}" alt="item image">
+                    </a>
                 </div>
-                <h3 style="margin: 2px;">{{item.name}}</h3>
+                <a href="/item/{{item.sku}}" class="red">
+                    <h3 style="
+                        margin: 2px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        width: 300px;
+                    ">
+                        {{item.name}}
+                    </h3>
+                </a>
                 <p style="font-size: 12px;">{{item.category}}</p>
                 <p style="margin-top: 10px;">${{item.price}}</p>
             </div>
-
-
-
-            <div class="red">
-                <div class="item_box" style="
-                    background-color: rgb(214, 214, 214);
-                ">
-                </div>
-                <h3 style="margin: 2px;">Apple shaped mug & candle</h3>
-                <p style="font-size: 12px;">Gifts</p>
-                <p style="margin-top: 10px;">$45.00</p>
-            </div>
-            <div class="red">
-                <div class="item_box" style="
-                    background-color: rgb(214, 214, 214);
-                ">
-                </div>
-                <h3 style="margin: 2px;">Apple shaped mug & candle</h3>
-                <p style="font-size: 12px;">Gifts</p>
-                <p style="margin-top: 10px;">$45.00</p>
-            </div>
-            <div class="red">
-                <div class="item_box" style="
-                    background-color: rgb(214, 214, 214);
-                ">
-                </div>
-                <h3 style="margin: 2px;">Apple shaped mug & candle</h3>
-                <p style="font-size: 12px;">Gifts</p>
-                <p style="margin-top: 10px;">$45.00</p>
-            </div>
+            {% endfor %}
+            
         </div>
 
 
     </section>
 
 
-    <footer style="
-        /* translate: 0px -6vw; */
-        margin-top: -5vw;
-    ">
+    <footer>
         <div style="
             display: flex;
         ">
-            <img src="../images/U·PICK.png" alt="" style="
+            <img src="../static/images/U·PICK.png" alt="" style="
                 width: 300px;
                 height: 60px;
             ">
@@ -247,6 +234,7 @@
             </div>
         </div>
     </footer>
-    <!-- <div style="height: 80px;"></div> -->
+
+    <script src="/static/js/static_replace.js"></script>
 </body>
 </html>

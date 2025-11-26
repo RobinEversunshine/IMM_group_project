@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ellipsis {
+            width: 200px;        /* 必须指定宽度或元素有固定宽度 */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            outline: black solid 1px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <p class="ellipsis">
+        这是一段非常非常非常非常非常非常长的文字，会被自动省略……
+    </p>
+
+</body>
+</html>

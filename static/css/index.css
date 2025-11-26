@@ -122,6 +122,10 @@ h3{
     background-color: var(--green);
 }
 
+.red_back {
+    background-color: var(--red);
+}
+
 
 
 .header_red {
@@ -204,6 +208,11 @@ h3{
     border-radius: 15px;
     border: 2px solid var(--red);
     transition: rotate 0.2s ease 0.1s, scale 0.2s ease 0.05s;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -211,6 +220,46 @@ h3{
     rotate: -7deg;
     scale: 1.08
 }
+
+
+
+
+.best_box_image {
+    width: 180px;
+    height: 210px;
+    background-color: rgb(214, 214, 214);
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    transition: height 0.2s ease 0.2s
+}
+
+
+.best_box:hover .best_box_image {
+    height: 160px;
+}
+
+
+
+.best_box h3 {
+    padding: 3px;
+    padding-left: 15px;
+    padding-right: 20px;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+
+    flex: 1;
+    /* outline: black solid 1px; */
+    margin: 0;
+}
+
+
+.best_box:hover h3 {
+    white-space: inherit;
+}
+
 
 
 
@@ -254,7 +303,6 @@ h3{
 
 
 .button {
-    /* background-color: var(--green); */
     border: 2px solid var(--beige);
     color: var(--red);
 
@@ -272,9 +320,7 @@ h3{
 
 
 .button2 {
-    /* background-color: var(--green); */
     border: 2px solid var(--red);
-    color: var(--red);
 
     font-size: 15px;
     border-radius: 10px;
@@ -288,26 +334,10 @@ h3{
 	transition-duration: 0.2s;
 }
 
-.button3 {
-    background-color: var(--red);
-    /* border: 2px solid var(--red); */
-    color: var(--beige);
 
-    font-size: 15px;
-    border-radius: 10px;
-    padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    
-    text-align: center;
-
-    transition-property: background-color color;
-	transition-duration: 0.2s;
-}
 
 
 .color_button {
-    /* background-color: var(--red); */
     border: 2px solid var(--red);
     border-radius: 50px;
     margin: 2px;
@@ -315,7 +345,34 @@ h3{
     width: 30px;
     height: 30px;
 
-
     transition-property: background-color color;
 	transition-duration: 0.2s;
 }
+
+
+
+
+
+
+
+
+.item_box {
+    width: 300px;
+    height: 300px;
+    /* outline: black solid 1px; */
+}
+
+.item_box img {
+    width: 300px;
+    object-fit:cover;
+}
+
+
+
+
+
+
+
+
+
+

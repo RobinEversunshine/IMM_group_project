@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a class="red" href="index.html" style="
+                    text-align: center;
+                ">
+                <p style="
+                    font-size: 40px;
+                    font-weight:1000;
+                    margin-left: 20px;
+                ">U·PICK</p>
+            </a>
+            <div style="
+                position: absolute;
+                top: 6px;
+                right: 30px;
+                height: 50px;
+            ">
+                <a href="">
+                    <img src="../static/images/Group 46.png" alt="" class="header_image">
+                </a>
+                <a href="">
+                    <img src="../static/images/Group 47.png" alt="" class="header_image">
+                </a>
+                <a href="">
+                    <img src="../static/images/Group 45.png" alt="" class="header_image">
+                </a>
+            </div>
+        </div>
+        <div class="header_red">
+            <a href="">
+                <p>Home</p>
+            </a>
+            <a href="">
+                <p>Gift</p>
+            </a>
+            <a href="">
+                <p>Wearable</p>
+            </a>
+            <a href="">
+                <p>Scripts</p>
+            </a>
+            <a href="">
+                <p>Sale</p>
+            </a>
+        </div>
+    </header>
+
+    <section style="
+        /* height: 1000px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    ">
+        <div class="red" style="
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                
+                width: 940px;
+            ">
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>New Available</h3>
+                    <div style="margin-left: 15px;">
+                        <p>All</p>
+                        <p>Gifts</p>
+                        <p>Wearable</p>
+                        <p>Scriptus</p>
+                    </div>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Sale</h3>
+                    <div style="margin-left: 15px;">
+                        <p>All</p>
+                        <p>Gifts</p>
+                        <p>Wearable</p>
+                        <p>Scriptus</p>
+                    </div>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Gifts</h3>
+                    <div style="margin-left: 15px;">
+                        <p>All</p>
+                        <p>Gifts</p>
+                        <p>Wearable</p>
+                        <p>Scriptus</p>
+                    </div>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    width: 200px;
+                ">
+                    <h3>Wearables</h3>
+                    <div style="margin-left: 15px;">
+                        <p>All</p>
+                        <p>Gifts</p>
+                        <p>Wearable</p>
+                        <p>Scriptus</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <section style="
+        /* height: 1000px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    ">
+        <div style="
+        margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            
+            gap: 20px; 
+            width: 940px;
+        ">
+            {% for item in items %}
+            <div class="red">
+                <div class="item_box" style="
+                    background-color: rgb(214, 214, 214);
+                    display: flex;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="static/item_images/{{item.image}}" alt="item image">
+                </div>
+                <h3 style="margin: 2px;">{{item.name}}</h3>
+                <p style="font-size: 12px;">{{item.category}}</p>
+                <p style="margin-top: 10px;">${{item.price}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </section>
+
+
+    <footer>
+        <div style="
+            display: flex;
+        ">
+            <img src="../static/images/U·PICK.png" alt="" style="
+                width: 300px;
+                height: 60px;
+            ">
+            <div style="
+                display: flex;
+                color: #C76642;
+                gap: 30px;
+                margin-left: 70px;
+            ">
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Category</h3>
+                    <p>Best Seller</p>
+                    <p>Gifts</p>
+                    <p>Wearable</p>
+                    <p>Scriptus</p>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Shipping</h3>
+                    <p>Delivery method</p>
+                    <p>Time & cost</p>
+                    <p>Order tracking</p>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Contact us</h3>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    width: 200px;
+                ">
+                    <h3>More pick for you</h3>
+                    <p>Subscribe to be first to know about new collections and special offers</p>
+                    <div class="search"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- <div style="height: 80px;"></div> -->
+</body>
+</html>
