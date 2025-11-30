@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}U·PICK{% endblock %}</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <a class="red" href="/" style="
+                    text-align: center;
+                ">
+                <p style="
+                    font-size: 40px;
+                    font-weight:1000;
+                    margin-left: 20px;
+                ">U·PICK</p>
+            </a>
+            <div style="
+                position: absolute;
+                top: 6px;
+                right: 30px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+            ">
+                {% if (user != "null") %}
+                    <p class="red" style="margin: 10px;">Hello, {{user.username}}</p>
+                    <a class="red" href="/logout">Log Out</a>
+                {% endif %}
+                <a href="/items">
+                    <img src="../static/images/Group 46.png" alt="" class="header_image">
+                </a>
+                <a href="
+                    {% if (user != 'null') %}
+                        /saved
+                    {% else %}
+                        /login
+                    {% endif %}
+                ">
+                    <img src="../static/images/Group 47.png" alt="" class="header_image">
+                </a>
+                <a href="/items">
+                    <img src="../static/images/Group 45.png" alt="" class="header_image">
+                </a>
+            </div>
+        </div>
+        <div class="header_red">
+            <a href="/">
+                <p>Home</p>
+            </a>
+            <a href="/items">
+                <p>Gift</p>
+            </a>
+            <a href="/items">
+                <p>Wearable</p>
+            </a>
+            <a href="/items">
+                <p>Scripts</p>
+            </a>
+            <a href="/items">
+                <p>Sale</p>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div style="
+            display: flex;
+        ">
+            <img src="../static/images/U·PICK.png" alt="" style="
+                width: 300px;
+                height: 60px;
+            ">
+            <div style="
+                display: flex;
+                color: #C76642;
+                gap: 30px;
+                margin-left: 70px;
+            ">
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Category</h3>
+                    <p>Best Seller</p>
+                    <p>Gifts</p>
+                    <p>Wearable</p>
+                    <p>Scriptus</p>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Shipping</h3>
+                    <p>Delivery method</p>
+                    <p>Time & cost</p>
+                    <p>Order tracking</p>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <h3>Contact us</h3>
+                </div>
+
+                <div style="
+                    display: flex;
+                    flex-direction: column;
+                    width: 200px;
+                ">
+                    <h3>More pick for you</h3>
+                    <p>Subscribe to be first to know about new collections and special offers</p>
+                    <div class="search"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

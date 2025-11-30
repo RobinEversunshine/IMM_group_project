@@ -1,59 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="../static/css/index.css">
 </head>
 
-<body>
-    <header>
-        <div>
-            <a class="red" href="/" style="
-                    text-align: center;
-                ">
-                <p style="
-                    font-size: 40px;
-                    font-weight:1000;
-                    margin-left: 20px;
-                ">U·PICK</p>
-            </a>
-            <div style="
-                position: absolute;
-                top: 6px;
-                right: 30px;
-                height: 50px;
-            ">
-                <a href="">
-                    <img src="../static/images/Group 46.png" alt="" class="header_image">
-                </a>
-                <a href="">
-                    <img src="../static/images/Group 47.png" alt="" class="header_image">
-                </a>
-                <a href="">
-                    <img src="../static/images/Group 45.png" alt="" class="header_image">
-                </a>
-            </div>
-        </div>
-        <div class="header_red">
-            <a href="/">
-                <p>Home</p>
-            </a>
-            <a href="/items">
-                <p>Gift</p>
-            </a>
-            <a href="/items">
-                <p>Wearable</p>
-            </a>
-            <a href="/items">
-                <p>Scripts</p>
-            </a>
-            <a href="/items">
-                <p>Sale</p>
-            </a>
-        </div>
-    </header>
+
+{% extends "base.html" %}
+
+{% block title %}Home - U·PICK{% endblock %}
+
+{% block content %}
 
     <section id="home" class="" style="height: 500px;">
         <div style="
@@ -155,7 +109,7 @@
                 <a href="/item/{{item.sku}}">
                     <div class="best_box red">
                         <div class="best_box_image">
-                            <img style="width: 180px; object-fit:cover;" src="/../static//item_images/{{item.image}}" alt="item image">
+                            <img style="width: 180px; object-fit:cover;" src="/../static/item_images/{{item.image}}" alt="item image">
                             <!-- <img style="width: 180px; object-fit:cover;" src="../static/item_images/UP25AS00A.webp" alt="item image"> -->
                         </div>
                         <hr style="border: 1px solid var(--red);">
@@ -186,64 +140,4 @@
 
     
 
-    
-
-
-    <footer>
-        <div style="
-            display: flex;
-        ">
-            <img src="../static/images/U·PICK.png" alt="" style="
-                width: 300px;
-                height: 60px;
-            ">
-            <div style="
-                display: flex;
-                color: #C76642;
-                gap: 30px;
-                margin-left: 70px;
-            ">
-                <div style="
-                    display: flex;
-                    flex-direction: column;
-                ">
-                    <h3>Category</h3>
-                    <p>Best Seller</p>
-                    <p>Gifts</p>
-                    <p>Wearable</p>
-                    <p>Scriptus</p>
-                </div>
-
-                <div style="
-                    display: flex;
-                    flex-direction: column;
-                ">
-                    <h3>Shipping</h3>
-                    <p>Delivery method</p>
-                    <p>Time & cost</p>
-                    <p>Order tracking</p>
-                </div>
-
-                <div style="
-                    display: flex;
-                    flex-direction: column;
-                ">
-                    <h3>Contact us</h3>
-                </div>
-
-                <div style="
-                    display: flex;
-                    flex-direction: column;
-                    width: 200px;
-                ">
-                    <h3>More pick for you</h3>
-                    <p>Subscribe to be first to know about new collections and special offers</p>
-                    <div class="search"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="/static/js/static_replace.js"></script>
-</body>
-</html>
+{% endblock %}

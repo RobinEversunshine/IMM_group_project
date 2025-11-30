@@ -373,6 +373,34 @@ h3{
 
 
 
+.input_box {
+    padding: 6px 10px;
+    margin-top: 6px;
+    width: 100%;
+
+    background-color: var(--beige);
+    border-radius: 10px;
+    border: 1px solid var(--red);
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+}
 
 
+.input_submit {
+    align-self:flex-start;
+    margin-top: 30px;
+    /* margin: 20px 10px; */
+    border: none;
+    border-radius: 10px;
+    color: var(--beige);
+    background-color: var(--red);
+    padding: 8px 32px;
+    /* text-decoration: none; */
 
+    cursor: pointer;
+}
+
+.light_text {
+    font-size: 15px;
+    font-weight: lighter;
+}
