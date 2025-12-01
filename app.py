@@ -196,4 +196,132 @@ def process_register():
 # saved page
 @app.route("/saved")
 def saved():
-    return render_template("saved.html", user = get_user())
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+
+    userid = session["user"]["userid"]
+
+    # find relation
+    cursor.execute('''SELECT * FROM `saved`
+                WHERE `userid` = %s;
+                ''', (userid, ))
+    savedData = cursor.fetchall()
+
+    items = []
+
+    for save in savedData:
+        if save["saved"]:
+            cursor.execute('''SELECT * FROM `items` WHERE `sku` = %s''', (save["sku"], ))    
+            items.append(cursor.fetchone())
+
+
+    data = {
+        "items": items,
+        "user": get_user(),
+    }
+
+
+    return render_template("saved.html", **data)
+
+
+
+# save status
+@app.route("/is_saved/<itemid>")
+def is_saved(itemid):
+
+    userid = session["user"]["userid"]
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+
+    # find relation
+    cursor.execute('''SELECT * FROM `saved`
+                WHERE `sku` = %s
+                AND `userid` = %s;
+                ''', (itemid, userid))
+    savedData = cursor.fetchone()
+
+    # no relation between user and item, create one
+    if not savedData:
+        cursor.execute('''
+        INSERT INTO `saved` (userid, sku, saved)
+        VALUES (%s, %s, 0)
+        ''', (userid, itemid))
+
+        conn.commit()
+
+        cursor.execute('''SELECT * FROM `saved`
+                WHERE `sku` = %s
+                AND `userid` = %s;
+                ''', (itemid, userid))
+        savedData = cursor.fetchone()
+    
+
+    return jsonify({"saved": bool(savedData["saved"])})
+
+
+
+
+
+
+# save item
+@app.route("/saved/<itemid>")
+def saveItem(itemid):
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+
+    userid = session["user"]["userid"]
+
+    # find relation
+    cursor.execute('''SELECT * FROM `saved`
+                WHERE `sku` = %s
+                AND `userid` = %s;
+                ''', (itemid, userid))
+    savedData = cursor.fetchone()
+
+
+    # no relation between user and item, create one
+    if not savedData:
+        cursor.execute('''
+        INSERT INTO `saved` (userid, sku, saved)
+        VALUES (%s, %s, 0)
+        ''', (userid, itemid))
+
+        conn.commit()
+
+        cursor.execute('''SELECT * FROM `saved`
+                WHERE `sku` = %s
+                AND `userid` = %s;
+                ''', (itemid, userid))
+        savedData = cursor.fetchone()
+
+        
+    # cursor.execute('''SELECT * FROM `items` WHERE `sku` = %s''', (itemid, ))
+    # item = cursor.fetchone()
+    save_status = savedData["saved"]
+
+
+    if save_status == 0:
+        cursor.execute('''UPDATE `saved` 
+                    SET `saved` = %s 
+                    WHERE `saved`.`sku` = %s
+                    AND `saved`.`userid` = %s;''', (1, itemid, userid))
+        # cursor.execute('''UPDATE `items` 
+        #             SET `likes` = %s 
+        #             WHERE `items`.`sku` = %s;''', (item["likes"] + 1, itemid))
+    elif save_status == 1:
+        cursor.execute('''UPDATE `saved` 
+                    SET `saved` = %s 
+                    WHERE `saved`.`sku` = %s
+                    AND `saved`.`userid` = %s;''', (0, itemid, userid))
+        # cursor.execute('''UPDATE `items` 
+        #             SET `likes` = %s 
+        #             WHERE `items`.`sku` = %s;''', (item["likes"] - 1, itemid))
+    conn.commit()
+
+    return jsonify({"saved": not bool(save_status)})

@@ -1,0 +1,80 @@
+<head>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+
+
+{% extends "base.html" %}
+
+{% block title %}Home - U·PICK{% endblock %}
+
+{% block content %}
+
+    <section style="
+        /* height: 1000px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    ">
+        <h1 class="red">SAVED ITEMS</h1>
+    </section>
+
+
+
+    <section style="
+        /* height: 1000px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    ">
+        <div style="
+            margin-top: 30px;
+            margin-bottom: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            
+            gap: 20px; 
+            width: 940px;
+        ">
+            {% for item in items %}
+            <div class="red">
+                <div class="item_box" style="
+                    background-color: rgb(214, 214, 214);
+                    display: flex;
+                    justify-content: center;
+                    overflow: hidden;
+
+                    border-radius: 10px;
+                ">
+                    <!-- <img src="../static/item_images/UP25AS00A.webp" alt="item image"> -->
+                    <a style="
+                        display: flex;
+                        justify-content: center;
+                    " href="/item/{{item.sku}}">
+                        <img src="/static/item_images/{{item.image}}" alt="item image">
+                    </a>
+                </div>
+                <a href="/item/{{item.sku}}" class="red">
+                    <h3 style="
+                        margin-bottom: 5px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        width: 300px;
+                    ">
+                        {{item.name}}
+                    </h3>
+                </a>
+                <p style="font-size: 12px;">{{item.category}}</p>
+                <p style="margin-top: 10px;">${{item.price}}</p>
+            </div>
+            {% endfor %}
+            
+        </div>
+
+
+    </section>
+
+
+{% endblock %}
