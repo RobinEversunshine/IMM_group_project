@@ -13,6 +13,8 @@ app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
+UPLOAD_FOLDER = "/static/item_images"
+
 
 
 def get_db():
@@ -301,8 +303,6 @@ def saveItem(itemid):
         savedData = cursor.fetchone()
 
         
-    # cursor.execute('''SELECT * FROM `items` WHERE `sku` = %s''', (itemid, ))
-    # item = cursor.fetchone()
     save_status = savedData["saved"]
 
 
@@ -311,17 +311,151 @@ def saveItem(itemid):
                     SET `saved` = %s 
                     WHERE `saved`.`sku` = %s
                     AND `saved`.`userid` = %s;''', (1, itemid, userid))
-        # cursor.execute('''UPDATE `items` 
-        #             SET `likes` = %s 
-        #             WHERE `items`.`sku` = %s;''', (item["likes"] + 1, itemid))
     elif save_status == 1:
         cursor.execute('''UPDATE `saved` 
                     SET `saved` = %s 
                     WHERE `saved`.`sku` = %s
                     AND `saved`.`userid` = %s;''', (0, itemid, userid))
-        # cursor.execute('''UPDATE `items` 
-        #             SET `likes` = %s 
-        #             WHERE `items`.`sku` = %s;''', (item["likes"] - 1, itemid))
     conn.commit()
 
     return jsonify({"saved": not bool(save_status)})
+
+
+
+
+
+
+
+# add item
+@app.route("/add")
+def additem():
+    return render_template("add-item.html", user = get_user())
+
+
+# confirm add
+@app.route("/confirm-add", methods=['POST'])
+def confirm_add():
+
+    if(session["user"]["role"] != 1):
+        return "Stop hacking"
+    else:
+        # if request.method == 'POST':
+
+        itemid = request.form.get('itemid')
+        name = request.form.get('name')
+        price = request.form.get('price')
+        details = request.form.get('details')
+        link = request.form.get('link')
+        category = request.form.get('category')
+
+        file = request.files['image']
+        filepath = os.path.join(os.getcwd() + UPLOAD_FOLDER, file.filename) 
+        file.save(filepath)
+        image = file.filename
+
+        conn = get_db()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute('''
+        INSERT INTO `items` (sku, name, price, details, link, category, image)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        ''', (itemid, name, price, details, link, category, image))
+
+        conn.commit()
+
+        return render_template("confirm-add.html", user = get_user())
+
+
+
+# edit item
+@app.route("/edit/<itemid>")
+def edititem(itemid):
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute('''SELECT * FROM `items` WHERE `sku` = %s''', (itemid, ))
+    item = cursor.fetchone()
+        
+    return render_template("edit-item.html", item = item, user = get_user())
+
+
+# confirm edit
+@app.route("/confirm-edit", methods=['POST'])
+def confirm_edit():
+
+    if(session["user"]["role"] != 1):
+        return "Stop hacking"
+    else:
+        if request.method == 'POST':
+
+            itemid = request.form.get('itemid')
+            name = request.form.get('name')
+            price = request.form.get('price')
+            details = request.form.get('details')
+            link = request.form.get('link')
+            category = request.form.get('category')
+
+
+            conn = get_db()
+            cursor = conn.cursor(dictionary=True)
+
+            cursor.execute('''UPDATE `items` 
+                        SET `name` = %s, 
+                        `price` = %s, 
+                        `details` = %s, 
+                        `link` = %s, 
+                        `category` = %s 
+                        WHERE `items`.`sku` = %s;''', (name, price, details, link, category, itemid))
+            
+            
+            file = request.files['image']
+
+            if file:
+                filepath = os.path.join(os.getcwd() + UPLOAD_FOLDER, file.filename) 
+                file.save(filepath)
+                image = file.filename
+            
+                cursor.execute('''UPDATE `items` SET `image` = %s WHERE `items`.`sku` = %s;''', (image, itemid))
+            
+            
+            conn.commit()
+
+        return render_template("confirm-edit.html", user = get_user())
+
+
+
+# delete item
+@app.route("/delete/<itemid>")
+def deleteitem(itemid):
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute('''SELECT * FROM `items` WHERE `sku` = %s''', (itemid, ))
+    item = cursor.fetchone()
+
+    return render_template("delete-item.html", item = item, user = get_user())
+
+
+# confirm delete
+@app.route("/confirm-delete", methods=['POST'])
+def confirm_delete():
+
+    if(session["user"]["role"] != 1):
+        return "Stop hacking"
+    else:
+        if request.method == 'POST':
+
+            itemid = request.form.get('itemid')
+
+            conn = get_db()
+            cursor = conn.cursor(dictionary=True)
+
+            cursor.execute('''DELETE FROM items WHERE `items`.`sku` = %s''', (itemid, ))
+            conn.commit()
+
+        return render_template("confirm-delete.html", user = get_user())
+
+
+
+

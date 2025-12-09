@@ -5,49 +5,25 @@
 
 {% extends "base.html" %}
 
-{% block title %}Home - U·PICK{% endblock %}
+{% block title %}Register - U·PICK{% endblock %}
 
 {% block content %}
 
-    <section style="
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    ">
-        <div class="red" style="
-            padding-top: 30px;
-            padding-bottom: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        ">
-
+    <section class="form_section">
+        <div class="red form_div">
             <h1>CREATE ACCOUNT</h1>
-            <form action="/process-register" method="POST" style="
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 400px;
-            ">
-                <p class="light_text" style="
-                    margin-top: 20px;
-                    width: 100%;
-                ">USER NAME</p>
+            <form action="/process-register" method="POST" class="form">
+
+                <p class="light_text form_text1">USER NAME</p>
                 <input class="input_box red" type="text" name="username" required>
-                <p class="light_text" style="
-                    margin-top: 12px;
-                    width: 100%
-                ">PASSWORD</p>
+
+                <p class="light_text form_text2">PASSWORD</p>
                 <input class="input_box red" type="password" name="password" required>
+
                 <input class="input_submit light_text" type="submit" value="CREATE" />
             </form>
-            <p id="error" style="
-                align-self:flex-start;
-                color: red;
-                margin-top: 10px;
-            "></p>
+
+            <p id="error" class="error"></p>
 
             <div style="
                 align-self:flex-start;

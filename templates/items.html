@@ -5,7 +5,7 @@
 
 {% extends "base.html" %}
 
-{% block title %}Home - U·PICK{% endblock %}
+{% block title %}Items - U·PICK{% endblock %}
 
 {% block content %}
 
@@ -15,6 +15,7 @@
         flex-direction: column;
         align-items: center;
         margin-top: 50px;
+        margin-bottom: 25px;
     ">
         <div class="red" style="
                 display: flex;
@@ -78,14 +79,22 @@
             </div>
     </section>
 
-
-
     <section style="
-        /* height: 1000px; */
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 50px;
+        margin: 10px;
+    ">
+        {% if (user != "null" and user["role"] == 1) %}
+            <a class="button2 red" style="width: 200px;" href="/add">Add item</a>
+        {% endif %}
+    </section>
+
+    <section style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 25px;
     ">
         <div style="
             margin-top: 30px;

@@ -1,0 +1,43 @@
+<head>
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+
+
+{% extends "base.html" %}
+
+{% block title %}Edit Item - U·PICK{% endblock %}
+
+{% block content %}
+
+    <section class="form_section">
+        <div class="red form_div">
+            <h1>EDIT ITEM</h1>
+            <form action="/confirm-edit" method="POST" class="form" enctype="multipart/form-data">
+
+                <input class="input_box red" type="hidden" name="itemid" required value="{{item.sku}}">
+
+                <p class="light_text form_text1">NAME</p>
+                <input class="input_box red" type="text" name="name" required value="{{item.name}}">
+
+                <p class="light_text form_text2">PRICE</p>
+                <input class="input_box red" type="text" name="price" value="{{item.price}}">
+
+                <p class="light_text form_text2">DETAILS</p>
+                <textarea class="input_box red" type="text" name="details" rows = "8" cols="10">{{item.details}}</textarea>
+
+                <p class="light_text form_text2">LINK</p>
+                <input class="input_box red" type="text" name="link" value="{{item.link}}">
+
+                <p class="light_text form_text2">CATEGORY</p>
+                <input class="input_box red" type="text" name="category" value="{{item.category}}">
+
+                <p class="light_text form_text2">IMAGE</p>
+                <input class="input_box red" type="file" name="image" accept=".jpg,.png,.jpeg,.webpl">
+
+                <input class="input_submit light_text" type="submit" value="EDIT" />
+            </form>
+            
+        </div>
+    </section>
+
+{% endblock %}

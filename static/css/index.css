@@ -404,3 +404,76 @@ h3{
     font-size: 15px;
     font-weight: lighter;
 }
+
+
+
+
+
+.form_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.form_div {
+    padding-top: 30px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+
+
+.form_text1 {
+    margin-top: 20px;
+    width: 100%
+}
+
+
+.form_text2 {
+    margin-top: 12px;
+    width: 100%
+}
+
+
+.error {
+    align-self:flex-start;
+    color: red;
+    margin-top: 10px;
+}
+
+
+
+.align-start {
+    align-self:flex-start;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
